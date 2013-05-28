@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Fallback.js by sgarbesi</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/sgarbesi/fallback.js">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/sgarbesi/fallback.js/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/sgarbesi/fallback.js/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Fallback.js</h1>
+          <p>JavaScript library for dynamically loading CSS and JS files. Also provides the ability to load multiple files from a CDN with multiple fallback options and shimming!</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/sgarbesi">sgarbesi</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>fallback.js</h1>
+
+<h4>The library is only 1.5 KB!!!</h4>
+
+<h2>About</h2>
+
+<ul>
+<li><em>JavaScript library for dynamically loading CSS and JS files.</em></li>
+<li><em>Ability to load multiple files from a CDN with multiple fallback options.</em></li>
+<li><em>Load scripts on demand for faster page load time!</em></li>
+<li><em>Loads all scripts in parralel!</em></li>
+<li><em>It's extremely easy to implement!</em></li>
+<li><strong>This is the only external script that needs to be loaded in your HTML!</strong></li>
+</ul><h2>API</h2>
+
+<h3>fallback.ready(function)</h3>
+
+<p><code>function</code></p>
+
+<ul>
+<li>Ready expects a function and will execute after <code>load</code> has completed.</li>
+<li>You can call ready multiple times throughout any of your scripts as it will chain all your functions and execute them upon completion.</li>
+</ul><h3>fallback.load(libraries, options)</h3>
+
+<p><code>libraries</code></p>
+
+<ul>
+<li>Object that expects its values to be either a string or array of urls.</li>
+<li>You can pass either an array or string as the value for each library.</li>
+<li>All libraries will be executing in parallel.</li>
+<li>The fallback libraries will be executed in the order they are in the array.</li>
+</ul><p><code>options</code></p>
+
+<ul>
+<li>Expects parameter to be an object.</li>
+<li>
+<code>callback</code> must be a function, which will return a success and failure object as individual parameters. ex: function(success, failed)</li>
+<li>
+<code>ready_invoke</code> defaults to true. If set to false, when fallback is completed it will not invoke the .ready function.</li>
+<li>
+<code>shim</code> ability to set libraries to wait in line for other libraries to finish loading.</li>
+</ul><div class="highlight"><pre><span class="nx">fallback</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
+    <span class="c1">// Stylesheet support. If a file contains .css it will attempt to load it as a stylesheet.</span>
+    <span class="nx">ex_style</span><span class="o">:</span> <span class="s1">'example.css'</span><span class="p">,</span>
+
+    <span class="nx">jquery</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">'//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.FAIL_ON_PURPOSE.min.js'</span><span class="p">,</span>
+        <span class="s1">'//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'</span><span class="p">,</span>
+        <span class="s1">'//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js'</span>
+    <span class="p">],</span>
+
+    <span class="nx">jquery_ui</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js'</span><span class="p">,</span>
+        <span class="s1">'//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js'</span><span class="p">,</span>
+        <span class="s1">'//js/loader.js?i=vendor/jquery-ui.min.js'</span>
+    <span class="p">]</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="c1">// Only load jquery ui after jquery itself has loaded!</span>
+    <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">jquery_ui</span><span class="o">:</span> <span class="p">[</span><span class="s1">'jquery'</span><span class="p">]</span>
+    <span class="p">},</span>
+
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">success</span><span class="p">,</span> <span class="nx">failed</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Inline callback</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">fallback</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Completed</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>Changelog</h2>
+
+<h3>v0.1 / 2013-05-27</h3>
+
+<pre><code>- Initial release.
+</code></pre>
+
+<p><a href="http://githalytics.com/sgarbesi/fallback.js"><img src="https://cruel-carlota.pagodabox.com/e57ed3fad26831b768bd39ff002571a2" alt="githalytics.com alpha" title="githalytics.com"></a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-38986040-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
