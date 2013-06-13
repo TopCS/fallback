@@ -38,11 +38,16 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <h1>fallback.js</h1>
+        <h1>
+<a name="fallbackjs" class="anchor" href="#fallbackjs"><span class="octicon octicon-link"></span></a>fallback.js</h1>
 
-<h4>The library is only 1.5 KB!!!</h4>
+<p>*** this documentation will be updated shortly. the keys for the JavaScript libraries you wish to load need to be their variable names. for instance jquery is "window.jQuery" so the key needs to be "jQuery" in order for this to work in older versions of IE.</p>
 
-<h2>About</h2>
+<h4>
+<a name="the-library-is-only-17-kb" class="anchor" href="#the-library-is-only-17-kb"><span class="octicon octicon-link"></span></a>The library is only 1.7 KB!!!</h4>
+
+<h2>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h2>
 
 <ul>
 <li><em>JavaScript library for dynamically loading CSS and JS files.</em></li>
@@ -51,16 +56,19 @@
 <li><em>Loads all scripts in parralel!</em></li>
 <li><em>It's extremely easy to implement!</em></li>
 <li><strong>This is the only external script that needs to be loaded in your HTML!</strong></li>
-</ul><h2>API</h2>
+</ul><h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
 
-<h3>fallback.ready(function)</h3>
+<h3>
+<a name="fallbackreadyfunction" class="anchor" href="#fallbackreadyfunction"><span class="octicon octicon-link"></span></a>fallback.ready(function)</h3>
 
 <p><code>function</code></p>
 
 <ul>
 <li>Ready expects a function and will execute after <code>load</code> has completed.</li>
 <li>You can call ready multiple times throughout any of your scripts as it will chain all your functions and execute them upon completion.</li>
-</ul><h3>fallback.load(libraries, options)</h3>
+</ul><h3>
+<a name="fallbackloadlibraries-options" class="anchor" href="#fallbackloadlibraries-options"><span class="octicon octicon-link"></span></a>fallback.load(libraries, options)</h3>
 
 <p><code>libraries</code></p>
 
@@ -81,15 +89,17 @@
 <code>shim</code> ability to set libraries to wait in line for other libraries to finish loading.</li>
 </ul><div class="highlight"><pre><span class="nx">fallback</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
     <span class="c1">// Stylesheet support. If a file contains .css it will attempt to load it as a stylesheet.</span>
-    <span class="nx">ex_style</span><span class="o">:</span> <span class="s1">'example.css'</span><span class="p">,</span>
+    <span class="nx">css</span><span class="o">:</span> <span class="s1">'index.css'</span><span class="p">,</span>
 
-    <span class="nx">jquery</span><span class="o">:</span> <span class="p">[</span>
-        <span class="s1">'//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.FAIL_ON_PURPOSE.min.js'</span><span class="p">,</span>
-        <span class="s1">'//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'</span><span class="p">,</span>
-        <span class="s1">'//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js'</span>
+    <span class="nx">JSON</span><span class="o">:</span> <span class="s1">'//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.min.js'</span><span class="p">,</span>
+
+    <span class="nx">jQuery</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">'//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.FAIL_ON_PURPOSE.min.js'</span><span class="p">,</span>
+        <span class="s1">'//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'</span><span class="p">,</span>
+        <span class="s1">'//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js'</span>
     <span class="p">],</span>
 
-    <span class="nx">jquery_ui</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s1">'jQuery.ui'</span><span class="o">:</span> <span class="p">[</span>
         <span class="s1">'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js'</span><span class="p">,</span>
         <span class="s1">'//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js'</span><span class="p">,</span>
         <span class="s1">'//js/loader.js?i=vendor/jquery-ui.min.js'</span>
@@ -97,7 +107,7 @@
 <span class="p">},</span> <span class="p">{</span>
     <span class="c1">// Only load jquery ui after jquery itself has loaded!</span>
     <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">jquery_ui</span><span class="o">:</span> <span class="p">[</span><span class="s1">'jquery'</span><span class="p">]</span>
+        <span class="s1">'jQuery.ui'</span><span class="o">:</span> <span class="p">[</span><span class="s1">'jQuery'</span><span class="p">]</span>
     <span class="p">},</span>
 
     <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">success</span><span class="p">,</span> <span class="nx">failed</span><span class="p">)</span> <span class="p">{</span>
@@ -110,14 +120,23 @@
 <span class="p">});</span>
 </pre></div>
 
-<h2>Changelog</h2>
+<h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
 
-<h3>v0.1 / 2013-05-27</h3>
+<h3>
+<a name="v02--2013-06-13" class="anchor" href="#v02--2013-06-13"><span class="octicon octicon-link"></span></a>v0.2 / 2013-06-13</h3>
 
-<pre><code>- Initial release.
-</code></pre>
+<ul>
+<li>Fixes for IE 7, 8 and 9.</li>
+<li>Added MIT license.</li>
+<li>Added .gitignore</li>
+<li>Added <code>release</code> branch.</li>
+</ul><h3>
+<a name="v01--2013-05-27" class="anchor" href="#v01--2013-05-27"><span class="octicon octicon-link"></span></a>v0.1 / 2013-05-27</h3>
 
-<p><a href="http://githalytics.com/sgarbesi/fallback.js"><img src="https://cruel-carlota.pagodabox.com/e57ed3fad26831b768bd39ff002571a2" alt="githalytics.com alpha" title="githalytics.com"></a></p>
+<ul>
+<li>Initial release.</li>
+</ul><p><a href="http://githalytics.com/sgarbesi/fallback.js"><img src="https://cruel-carlota.pagodabox.com/e57ed3fad26831b768bd39ff002571a2" alt="githalytics.com alpha" title="githalytics.com"></a></p>
       </section>
 
     </div>
